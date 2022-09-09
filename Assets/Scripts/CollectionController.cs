@@ -11,6 +11,8 @@ public class CollectionController : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<PlayerController>().score += score;
+            CollectionSpawner spawner = FindObjectOfType<CollectionSpawner>();
+            spawner.SpawnCollectible();
             Destroy(gameObject);
         }
     }

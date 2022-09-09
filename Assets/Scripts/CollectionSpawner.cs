@@ -23,9 +23,14 @@ public class CollectionSpawner : MonoBehaviour
     {
         if (numOfCollectible > 0)
         {
-            Vector3 pos = new Vector3(Random.Range(minX, maxX), 10, Random.Range(minZ, maxZ));
-            Instantiate(collectionPrefab, pos, Quaternion.identity);
+            SpawnCollectible();
             numOfCollectible--;
         }
+    }
+
+    public void SpawnCollectible()
+    {
+        Vector3 pos = new Vector3(Random.Range(minX, maxX), 10, Random.Range(minZ, maxZ));
+        Instantiate(collectionPrefab, pos, Quaternion.identity);
     }
 }
