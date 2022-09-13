@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
+    public GameObject inGameMenu;
+    public GameObject gameoverMenu;
+    public bool isOver = false;
+
+    private void Start()
+    {
+
+    }
+
     public void RestartButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -18,5 +27,19 @@ public class InGameMenu : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void OnESC()
+    {
+        if (!isOver)
+        {
+            inGameMenu.SetActive(!inGameMenu.active);
+        }
+    }
+
+    public void GameOver()
+    {
+        isOver = true;
+        gameoverMenu.SetActive(true);
     }
 }

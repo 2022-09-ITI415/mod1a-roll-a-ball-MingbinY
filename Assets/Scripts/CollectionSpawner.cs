@@ -5,9 +5,7 @@ using UnityEngine;
 public class CollectionSpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject collectionPrefab;
-    [SerializeField]
-    int numOfCollectible = 5;
+    GameObject[] collectionPrefab;
 
     public Transform topTrans, downTrans, leftTrans, rightTrans;
     float maxZ, minZ, maxX, minX;
@@ -19,18 +17,15 @@ public class CollectionSpawner : MonoBehaviour
         minX = leftTrans.position.x;
     }
 
-    private void Update()
+    public void SpawnRandomPickup()
     {
-        if (numOfCollectible > 0)
-        {
-            SpawnCollectible();
-            numOfCollectible--;
-        }
+        Vector3 pos = new Vector3(Random.Range(minX, maxX), 1, Random.Range(minZ, maxZ));
+        Instantiate(collectionPrefab[Random.Range(0,collectionPrefab.Length)], pos, Quaternion.identity);
     }
 
-    public void SpawnCollectible()
+    public void SpawnPickup()
     {
-        Vector3 pos = new Vector3(Random.Range(minX, maxX), 10, Random.Range(minZ, maxZ));
-        Instantiate(collectionPrefab, pos, Quaternion.identity);
+        Vector3 pos = new Vector3(Random.Range(minX, maxX), 1, Random.Range(minZ, maxZ));
+        Instantiate(collectionPrefab[0], pos, Quaternion.identity);
     }
 }

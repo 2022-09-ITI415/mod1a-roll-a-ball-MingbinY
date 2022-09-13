@@ -10,23 +10,19 @@ public class PlayerController : MonoBehaviour
     float moveForce = 1f;
     Vector2 movementVector = Vector2.zero;
     public int score = 0;
-    // Start is called before the first frame update
+
     void Start()
     {
         score = 0;
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnMovement(InputValue movementValue)
     {
         movementVector = movementValue.Get<Vector2>();
     }
+
+   
 
     private void FixedUpdate()
     {
