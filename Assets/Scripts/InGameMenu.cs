@@ -21,7 +21,7 @@ public class InGameMenu : MonoBehaviour
 
     public void MainMenuButton()
     {
-
+        SceneManager.LoadScene(0);
     }
 
     public void QuitButton()
