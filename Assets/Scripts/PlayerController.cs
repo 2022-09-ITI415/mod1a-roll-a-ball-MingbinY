@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     [SerializeField]
     float moveForce = 1f;
-    Vector2 movementVector = Vector2.zero;
+    float movementX, movementY;
     public int score = 0;
 
     void Start()
@@ -19,14 +19,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnMovement(InputValue movementValue)
     {
-        movementVector = movementValue.Get<Vector2>();
+        Vector2 movementVector = movementValue.Get<Vector2>();
+        movementX = movementVector.x;
+        movementY = movementVector.y;
     }
 
    
 
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementVector.x, 0, movementVector.y);
+        Vector3 movement = new Vector3(movementX, 0, movementY);
         rb.AddForce(movement * moveForce);
     }
 }
