@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Dash : Ability
 {
     public float dashForce;
+    float lastActivateTime = 0;
 
     public override void Activate(GameObject parent)
     {
@@ -15,5 +16,4 @@ public class Dash : Ability
         PlayerController pc = parent.GetComponent<PlayerController>();
         rb.velocity = pc.movementVector.normalized * dashForce;
     }
-
 }
