@@ -6,7 +6,7 @@ public class AbilityHolder : MonoBehaviour
 {
     public Ability currentAbility;
 
-    [SerializeField]float cooldown;
+    public float cooldown;
     float activeTimer;
     public float currentCooldown;
     enum AbilityState
@@ -21,6 +21,7 @@ public class AbilityHolder : MonoBehaviour
     private void Start()
     {
         currentState = AbilityState.Ready;
+        currentCooldown = 0;
     }
 
     private void Update()
@@ -41,35 +42,33 @@ public class AbilityHolder : MonoBehaviour
 
     void UpdateAbilityState()
     {
-        if (currentAbility != null)
+        switch (currentState)
         {
-            cooldown = currentAbility.cooldown;
-        }
+            case AbilityState.Ready:
+                break;
 
-        currentCooldown = cooldown - (Time.time - activeTimer);
-        if (currentCooldown < 0)
-        {
-            currentCooldown = 0;
-        }
-        if (currentState == AbilityState.Ready)
-        {
-            return;
-        }
-        else if (currentState == AbilityState.Active)
-        {
-            if (Time.time - activeTimer > currentAbility.duration)
-            {
-                //Enter cooldown
-                currentState = AbilityState.Cooldown;
-            }
-        }
-        else if (currentState == AbilityState.Cooldown)
-        {
-            if (Time.time - activeTimer > currentAbility.cooldown)
-            {
-                //Ability ready
-                currentState = AbilityState.Ready;
-            }
+            case AbilityState.Active:
+                if (activeTimer > 0)
+                {
+                    activeTimer -= Time.deltaTime;
+                }
+                else
+                {
+                    currentCooldown = currentAbility.cooldown;
+                    currentState = AbilityState.Cooldown;
+                }
+                break;
+            case AbilityState.Cooldown:
+                if (currentCooldown > 0)
+                {
+                    currentCooldown -= Time.deltaTime;
+                }
+                else
+                {
+                    currentCooldown = 0;
+                    currentState = AbilityState.Ready;
+                }
+                break;
         }
     }
     public void ActivateAbility()
@@ -79,7 +78,7 @@ public class AbilityHolder : MonoBehaviour
         {
             //Active ability
             currentAbility.Activate(gameObject);
-            activeTimer = Time.time;
+            activeTimer = currentAbility.duration;
             currentState = AbilityState.Active;
         }
     }

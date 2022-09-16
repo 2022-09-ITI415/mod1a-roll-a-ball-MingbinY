@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef28114eedb75b4ab8370b846112d1d, type: 3}
   m_Name: Destroy Explosive
   m_EditorClassIdentifier: 
-  abilityName: Destroy Explosives!
-  cooldown: 10
+  abilityName: BOOM!
+  cooldown: 6
   duration: 0
   radius: 50
-  VFX: {fileID: 6920804759661973724, guid: 6956ffd1db03a184aa2304f32a6bb427, type: 3}
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
+  explosionVFX: {fileID: 3640293828961523995, guid: e2800079983e49847b9b458178495c9c, type: 3}

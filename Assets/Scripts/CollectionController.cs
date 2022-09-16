@@ -12,7 +12,14 @@ public enum PickupType
 public class CollectionController : MonoBehaviour
 {
     public PickupType pickupType;
+
+    [Header("Ability Pickup")]
     public Ability[] pickupAbility;
+
+    [Header("Explosive Pickup")]
+    public GameObject explosionVFX;
+
+    [Header("General")]
     public int score = 1;
     CollectionSpawner spawner;
     CameraShake cameraShaker;
@@ -43,6 +50,7 @@ public class CollectionController : MonoBehaviour
             }
             else if (pickupType == PickupType.explosion)
             {
+                Instantiate(explosionVFX, transform.position, Quaternion.identity);
                 other.GetComponent<HealthManager>().TakeDamage();
                 cameraShaker.ActiveShake(shakeDuration, shakeMagitude);
             }else if (pickupType == PickupType.ability)
