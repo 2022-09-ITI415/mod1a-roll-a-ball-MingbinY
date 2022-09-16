@@ -37,8 +37,11 @@ public class CollectionSpawner : MonoBehaviour
 
     public void SpawnAbilityPickup()
     {
-        Vector3 pos = new Vector3
-            (Random.Range(player.transform.position.x - 5, player.transform.position.x + 5), 1, Random.Range(player.transform.position.z - 5, player.transform.position.z + 5));
+        Vector3 pos = new Vector3(Random.Range(minX, maxX), 5, Random.Range(minZ, maxZ));
+        while (Vector3.Distance(pos, player.transform.position) < 5 || pos.x < minX || pos.x > maxX || pos.z < minZ || pos.z > maxZ)
+        {
+            pos = new Vector3(Random.Range(minX, maxX), 1, Random.Range(minZ, maxZ));
+        }
         Instantiate(abilityPickupPrefab, pos, Quaternion.identity);
     }
 }

@@ -7079,15 +7079,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectionPrefab:
   - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
+  - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
+  - {fileID: 1929827965044952336, guid: 62212fbd2030dbe4e9b371c0b3709dd5, type: 3}
+  - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
   - {fileID: 1929827965044952336, guid: f611b4d3eede5af42b79b9d7d5a92451, type: 3}
   - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
   - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
-  - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
-  - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
-  - {fileID: 1929827965044952336, guid: 3f8210db8d4850c4e9b66b294b3dc30e, type: 3}
   - {fileID: 1929827965044952336, guid: 62212fbd2030dbe4e9b371c0b3709dd5, type: 3}
   - {fileID: 1929827965044952336, guid: 62212fbd2030dbe4e9b371c0b3709dd5, type: 3}
-  - {fileID: 1929827965044952336, guid: 62212fbd2030dbe4e9b371c0b3709dd5, type: 3}
+  - {fileID: 1929827965044952336, guid: f611b4d3eede5af42b79b9d7d5a92451, type: 3}
   abilityPickupPrefab: {fileID: 1929827965044952336, guid: e9637325ecade0d429af3b8b386eb664, type: 3}
   abilityPickupScore: 0a000000140000001e0000002800000032000000
   topTrans: {fileID: 1666400921}

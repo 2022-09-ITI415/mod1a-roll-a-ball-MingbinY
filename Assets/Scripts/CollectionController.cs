@@ -57,13 +57,13 @@ public class CollectionController : MonoBehaviour
             {
                 if (pickupAbility != null)
                 {
-                    Ability ability = pickupAbility[Random.Range(0, pickupAbility.Length)];
+                    other.GetComponent<PlayerController>().score += score;
+                    Ability ability = ChooseAbility(other);
                     other.GetComponent<AbilityHolder>().currentAbility = ability;
                 }
             }
 
-            int currentScore = other.GetComponent<PlayerController>().score;
-            if (currentScore == 10 || currentScore == 20)
+            if (Random.Range(0, 100) < 10)
             {
                 spawner.SpawnAbilityPickup();
             }
@@ -73,5 +73,17 @@ public class CollectionController : MonoBehaviour
             }
             Destroy(gameObject);
         }
+    }
+
+    Ability ChooseAbility(Collider playerCol)
+    {
+        Ability playerAbility = playerCol.GetComponent<AbilityHolder>().currentAbility;
+        int ind = Random.Range(0, pickupAbility.Length);
+        while (pickupAbility[ind] == playerAbility)
+        {
+            ind = Random.Range(0, pickupAbility.Length);
+        }
+
+        return pickupAbility[ind];
     }
 }
