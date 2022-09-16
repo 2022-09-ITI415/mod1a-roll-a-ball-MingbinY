@@ -15,5 +15,5 @@ MonoBehaviour:
   abilityName: Destroy Explosives!
   cooldown: 10
   duration: 0
-  radius: 10
+  radius: 50
   VFX: {fileID: 6920804759661973724, guid: 6956ffd1db03a184aa2304f32a6bb427, type: 3}
