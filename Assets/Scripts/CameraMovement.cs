@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public GameObject player;
+    public bool isShaking = false;
 
     private Vector3 offset;
 
@@ -17,6 +18,9 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = player.transform.position + offset;
+        if (!isShaking)
+        {
+            transform.position = player.transform.position + offset;
+        }
     }
 }

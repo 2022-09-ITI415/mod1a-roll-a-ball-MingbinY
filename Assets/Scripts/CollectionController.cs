@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum pickupType
+public enum PickupType
 {
     normal,
     bonus,
-    explosion
+    explosion,
+    ability
 }
 public class CollectionController : MonoBehaviour
 {
-    public pickupType pickupType;
+    public PickupType pickupType;
+    public Ability[] pickupAbility;
     public int score = 1;
     CollectionSpawner spawner;
+    CameraShake cameraShaker;
+    public float shakeDuration;
+    public float shakeMagitude;
 
     private void Start()
     {
+        cameraShaker = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>(); 
         spawner = FindObjectOfType<CollectionSpawner>();
-        if (pickupType == pickupType.explosion)
+        if (pickupType == PickupType.explosion)
         {
             spawner.SpawnPickup();
         }
@@ -28,18 +34,35 @@ public class CollectionController : MonoBehaviour
         Debug.Log(other.tag);
         if (other.tag == "Player")
         {
-            if (pickupType == pickupType.normal)
+            if (pickupType == PickupType.normal)
             {
                 other.GetComponent<PlayerController>().score += score;
-            }else if(pickupType == pickupType.bonus)
+            }else if(pickupType == PickupType.bonus)
             {
                 other.GetComponent<PlayerController>().score += 2 * score;
             }
-            else if (pickupType == pickupType.explosion)
+            else if (pickupType == PickupType.explosion)
             {
                 other.GetComponent<HealthManager>().TakeDamage();
+                cameraShaker.ActiveShake(shakeDuration, shakeMagitude);
+            }else if (pickupType == PickupType.ability)
+            {
+                if (pickupAbility != null)
+                {
+                    Ability ability = pickupAbility[Random.Range(0, pickupAbility.Length)];
+                    other.GetComponent<AbilityHolder>().currentAbility = ability;
+                }
             }
-            spawner.SpawnRandomPickup();
+
+            int currentScore = other.GetComponent<PlayerController>().score;
+            if (currentScore == 10 || currentScore == 20)
+            {
+                spawner.SpawnAbilityPickup();
+            }
+            else
+            {
+                spawner.SpawnRandomPickup();
+            }
             Destroy(gameObject);
         }
     }

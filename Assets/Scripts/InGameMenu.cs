@@ -7,6 +7,7 @@ public class InGameMenu : MonoBehaviour
 {
     public GameObject inGameMenu;
     public GameObject gameoverMenu;
+    public GameObject winMenu;
     public bool isOver = false;
 
     private void Start()
@@ -41,5 +42,11 @@ public class InGameMenu : MonoBehaviour
     {
         isOver = true;
         gameoverMenu.SetActive(true);
+    }
+
+    public void Win()
+    {
+        isOver = true;
+        winMenu.SetActive(true);
     }
 }

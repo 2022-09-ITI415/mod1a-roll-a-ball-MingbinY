@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupType: 2
   score: 1
+  shakeDuration: 0.15
+  shakeMagitude: 0.4
 --- !u!54 &1929827965044952350
 Rigidbody:
   m_ObjectHideFlags: 0

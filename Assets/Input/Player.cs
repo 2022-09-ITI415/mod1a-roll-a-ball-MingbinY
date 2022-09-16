@@ -35,6 +35,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""d573847e-ac27-41b1-9968-51d1ffb75557"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa301668-0fbf-4c28-bcde-07bd4176b3e1"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -129,6 +149,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         // Movement
         m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
         m_Movement_Movement = m_Movement.FindAction("Movement", throwIfNotFound: true);
+        m_Movement_Ability = m_Movement.FindAction("Ability", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_ESC = m_Menu.FindAction("ESC", throwIfNotFound: true);
@@ -192,11 +213,13 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Movement;
     private IMovementActions m_MovementActionsCallbackInterface;
     private readonly InputAction m_Movement_Movement;
+    private readonly InputAction m_Movement_Ability;
     public struct MovementActions
     {
         private @Player m_Wrapper;
         public MovementActions(@Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Movement_Movement;
+        public InputAction @Ability => m_Wrapper.m_Movement_Ability;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -209,6 +232,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnMovement;
+                @Ability.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnAbility;
+                @Ability.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnAbility;
+                @Ability.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnAbility;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -216,6 +242,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Ability.started += instance.OnAbility;
+                @Ability.performed += instance.OnAbility;
+                @Ability.canceled += instance.OnAbility;
             }
         }
     }
@@ -256,6 +285,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     public interface IMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
