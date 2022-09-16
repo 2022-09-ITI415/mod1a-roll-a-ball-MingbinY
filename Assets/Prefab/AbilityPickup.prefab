@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1929827965044952336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -40.75}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7377c9c1cb449a9428168b52cb1e834c, type: 2}
   - {fileID: 11400000, guid: e0f98ea589d39f741b841a7d2408a464, type: 2}
   explosionVFX: {fileID: 0}
-  score: 1
+  score: 2
   shakeDuration: 0
   shakeMagitude: 0
 --- !u!54 &1929827965044952350
